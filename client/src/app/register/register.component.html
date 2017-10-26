@@ -1,0 +1,44 @@
+<div class="navbar navbar-fixed-top navbar-default" style="z-index: 9999" >
+  <div class="container" style="min-width:768px;height:58px;">
+    <div class="row">
+      <div class="col-md-1" style="height:58px; margin-left:100px;">
+        <a [routerLink]="['']" class="log">
+          <img src="../../assets/images/logo.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-md-offset-3 form-div">
+
+      <form #registerRef="ngForm">
+        <h4>注册</h4>
+        <div class="form-group">
+          <input type="text" (blur)="checkNick(nick.value)" class="form-control" #nick="ngModel" name="nickname" [(ngModel)]="nickname" placeholder="请输入昵称（不超过10个字符）" required maxlength="10">
+          <p class="help-block text-warning" *ngIf="errNickShow">{{errNickContent}}</p>
+        </div>
+
+        <div class="form-group">
+          <input type="text" (blur)="checkTel(tel.value)" class="form-control" name="telephone" #tel="ngModel" [(ngModel)]="telephone"  placeholder="请输入手机号" required pattern="^1[345678]\d{9}$">
+          <p class="help-block text-warning" *ngIf="errTelephoneShow">{{errTelephoneContent}}</p>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" (blur)="checkPassword(passwordRef.value)" name="password" #passwordRef="ngModel" [(ngModel)]="password" id="Password" placeholder="请输入密码">
+          <p class="help-block text-warning" *ngIf="errPasswordShow">{{errPasswordContent}}</p>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" name="repassword" #repasswordRef="ngModel" (blur)="checkrePassword(repasswordRef.value)" [(ngModel)]="repassword"  placeholder="请再次确认密码">
+          <p class="help-block text-warning" *ngIf="errrePasswordShow">{{errrePasswordContent}}</p>
+        </div>
+
+        <button type="submit"  (click)="toRegister(registerRef.value)" class="btn-submint">Submit</button>
+      </form>
+    </div>
+
+  </div>
+</div>

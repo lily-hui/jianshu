@@ -1,0 +1,132 @@
+<div class="navbar navbar-fixed-top navbar-default" style="z-index: 9999" >
+  <div class="container" style="min-width:768px;height:58px;">
+    <div class="row">
+      <div class="col-md-1" style="height:58px; margin-left:-100px;">
+        <a [routerLink]="['']" class="log">
+          <img src="../../assets/images/logo.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" style="position: fixed; z-index:100;top:60px;width:50%;left:25%;" *ngIf="resultHidden">
+  <div class="row">
+      <div class="alert alert-info text-center">
+        <strong>{{showResult}}</strong>
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" id="personalContent" style="margin-top:60px;">
+  <!--个人基本信息完善-->
+  <div class="col-md-offset-2 col-md-10 temp" style=" display:block;">
+    <div class="col-md-7 col-md-offset-2" >
+      <div class="row sex">
+        <div class="col-md-2">性别:</div>
+        <div class="col-md-2">男: <input type="radio" name="sex" [(ngModel)]="sexRadio" value="1"></div>
+        <div class="col-md-2">女: <input type="radio" name="sex" [(ngModel)]="sexRadio" value="2"></div>
+        <div class="col-md-2">保密: <input type="radio" name="sex" [(ngModel)]="sexRadio" value="3"></div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-2">
+          个人介绍:
+        </div>
+        <div class="col-md-offset-3">
+          <textarea class="form-control" [(ngModel)]="introduce" style="resize: horizontal" name="text"  cols="20" rows="5">
+          </textarea>
+        </div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-2">
+          个人网站:
+        </div>
+        <div class="col-md-offset-3">
+          <input type="text" placeholder="http://" name="web"  [(ngModel)]="webUrl" class="form-control" style="width:60%;">
+        </div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-2">
+          昵称:
+        </div>
+        <div class="col-md-offset-3">
+          <input type="text"  [(ngModel)]="nickname" name="nickname" class="form-control" style="width:60%;">
+        </div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-2">
+          电子邮件:
+        </div>
+        <div class="col-md-offset-3">
+          <input type="text"  [(ngModel)]="email" class="form-control" style="width:60%;">
+        </div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-2">
+          头像:
+        </div>
+        <div class="col-md-offset-1 col-md-6">
+          <input type="file" ng2FileSelect [uploader]="uploader" #fileRef   name="file"  class="form-control" style="width:60%;">
+        </div>
+        <div class="col-md-2">
+          <input type="button" value="更换头像" (click)="selectedFileOnChanged(fileRef.value)" class="changeHead">
+        </div>
+      </div>
+
+      <div class="row sex">
+        <div class="col-md-offset-3">
+          <input type="button" class="form-control" (click)="funSubmitInfo()" value="保存" style="width:60%;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--收藏管理-->
+
+  <!--修改文章-->
+
+
+  <!--简信-->
+  <!--
+  <div class="col-md-offset-2 col-md-10 temp" style="border:1px solid #ff2a00;">
+    <div class="col-md-7 col-md-offset-2">
+      <div class="row" style="border-bottom:1px solid #eee;">
+        <h3 class="text-center">与曾聊天中</h3>
+      </div>
+    </div>
+
+
+    <div class="col-md-7 col-md-offset-2" style="height:420px;overflow: hidden;border:1px solid #ccc;">
+
+    </div>
+
+    <div class="col-md-7 col-md-offset-2" style="margin-top:20px;">
+      <textarea name="" style="resize:vertical;" class="form-control" id="" cols="20" rows="3"></textarea>
+    </div>
+
+    <div class="col-md-7 col-md-offset-2" style="margin-top:10px;">
+      <span class="pull-left" style="color:#666;">enter键发送</span>
+      <input type="button" class="sendBtn pull-right" value="发送">
+    </div>
+  </div>
+  -->
+
+
+
+</div>
+
+<div class="leftNav" id="personalLeftMenu">
+  <ul class="leftNavMenu" id="leftNavMenu">
+    <li>个人信息</li>
+    <!--<li>文章管理</li>-->
+  </ul>
+</div>

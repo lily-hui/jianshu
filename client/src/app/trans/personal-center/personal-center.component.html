@@ -1,0 +1,220 @@
+<div class="container" style=" margin:58px auto 30px;width:80%;">
+  <div class="row my-center" *ngFor="let info of userInfo">
+
+    <div class="left col-lg-6 col-lg-offest-1 col-md-6 col-md-offset-1 col-sm-6">
+      <div class="left-top">
+        <div class="head">
+          <img src="{{webUrl}}upfile/{{info.head}}" alt="">
+        </div>
+        <div class="details">
+          <div class="user-name">{{info.nickname}}</div>
+          <div class="details_nav">
+            <ul>
+<!--              <li><strong>{{info.}}</strong>
+                <div>关注</div></li>-->
+              <li><strong>{{info.fans}}</strong>
+                <div >粉丝</div></li>
+              <li><strong>{{info.size===null ? '0':info.size}}</strong>
+                <div >字数</div></li>
+              <li><strong>{{info.blog_count}}</strong>
+                <div >文章</div></li>
+              <li><strong>{{info.lik_num}}</strong>
+                <div>收获喜欢</div></li>
+<!--              <li><strong>0</strong>
+                <div>收藏></div></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="list-nav">
+        <ul>
+          <li style="border-bottom:2px solid #555" (click)="funShowMenu('artical',$event)" [ngStyle]="articalBorder">{{userId==selfUserId ? '我的文章':'他写的文章'}}</li>
+          <li (click)="funShowMenu('concren',$event)" [ngStyle]="articalBorder">{{userId==selfUserId ? '我关注的作者':'他关注的作者'}}</li>
+          <li (click)="funShowMenu('like',$event)" [ngStyle]="articalBorder">{{userId==selfUserId ? '我喜欢的文章':'他喜欢的文章'}}</li>
+        </ul>
+      </div>
+
+
+      <div class="component-div">
+          <div [ngStyle]="articalStyle">
+            <!--[routerLink]="['/PersonalCenter',blo.user_id]"-->
+              <div class="author" *ngFor="let blo of blog">
+                <a style="text-decoration: none">
+                  <!--a.blog_id as blog_id,a.head,a.userid as userid,-->
+                  <span><img src="{{webUrl}}upfile/{{blo.head}}" alt=""></span>
+                  <span class="author_name">{{blo.author}}</span>
+                  <small>{{blo.created_at}}</small>
+                </a>
+                <div class="author_title">
+                  <a [routerLink]="['/artical',blo.blog_id]" >{{blo.title}}</a>
+                </div>
+                <p class="author_content">
+                  {{blo.content | filter:266}}
+                </p>
+                <div class="meta">
+                  <a [routerLink]="['/category',blo.category_id]" class="meta_theme">
+                    {{blo.categoryname}}
+                  </a>
+                  <a>
+                    <img src="../../assets/images/response.png" alt="">
+                    {{blo.comment_count}}
+                  </a>
+                  <a>
+                    <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+                    {{blo.like_count}}
+                  </a>
+                </div>
+              </div>
+              <div class="spinner" *ngIf="varWaitLoad">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+              </div>
+
+              <div class="load_more" *ngIf="noMoreBlog" (click)="funGetMore('blog')">
+                阅读更多
+              </div>
+              <div class="noMore" *ngIf="!noMoreBlog">
+                没有更多啦!
+              </div>
+
+
+           </div>
+
+          <div [ngStyle]="concrenStyle">
+            <!--[routerLink]="['/PersonalCenter',con.userid]"-->
+            <div class="AuthorInfo" *ngFor="let con of concern">
+              <div class="concernHeader" (click)="funReload(con.userid)" style="cursor:pointer;">
+                <img [routerLink]="['/PersonalCenter',con.userid]" src="{{webUrl}}upfile/{{con.head}}" alt="">
+              </div>
+              <div class="concernCenter">
+                <span class="concernAuthor">{{con.nickname}}</span><br>
+                <span class="concernAuthorInfo">写了 {{con.size}} 字，被 {{con.fans}} 人关注，获得了 {{con.lik_num}} 个喜欢</span>
+              </div>
+              <!--<input  type="button" value="关注" class="concernBtn" (click)="funAddFollow(con.userid,$event)" *ngIf="concernToggle" style="background-color: #3db922;">-->
+              <input type="button" [value]="toggleContentSelf" [ngClass]="toggleClassSelf" (click)="funAddFollow(con.userid,$event)">
+
+              <p class="concern_split"></p>
+              <span class="authorIntroduce">
+                  {{con.introduce | filter:30}}
+              </span>
+            </div>
+
+            <div class="spinner" *ngIf="varWaitLoad">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+
+            <div class="load_more" *ngIf="noMoreConcern" (click)="funGetMore('concern')">
+              阅读更多
+            </div>
+            <div class="noMore" *ngIf="!noMoreConcern">
+              没有更多啦!
+            </div>
+
+          </div>
+
+          <!--<div [ngStyle]="collectionStyle">
+
+            <div class="author">
+              <a>
+                <span><img src="../../assets/images/category-1.png" alt=""></span>
+                <span class="author_name">达芬奇</span>
+                <small>09.09&nbsp;13:27</small>
+              </a>
+              <div class="author_title">
+                <a href="" >那个荷兰男人的眼里有火</a>
+              </div>
+              <p class="author_content">
+                这是简书第一个征集「情书」的专题。 每一个爱好文字的人，都应该有过为另一个
+                Ta提笔写情书的冲动。或许你的爱情是单车上穿着白衬衫和连衣裙的你我，或许你
+                的爱情是流光溢彩的霓虹灯和...
+              </p>
+              <div class="meta">
+                <a href="" class="meta_theme">
+                  生活经验
+                </a>
+                <a href="">
+                  <img  src="../../assets/images/eye.png" alt="">
+                  424
+                </a>
+                <a href="">
+                  <img src="../../assets/images/response.png" alt="">
+                  43432
+                </a>
+                <a>
+                  <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+                  1233
+                </a>
+              </div>
+            </div>
+          </div>-->
+
+          <div [ngStyle]="likeStyle">
+              <div class="author" *ngFor="let likArt of like">
+                <!--[routerLink]="['/PersonalCenter',likArt.user_id]"-->
+                <a  (click)="funReload(likArt.user_id)">
+                  <span [routerLink]="['/PersonalCenter',likArt.user_id]"><img src="{{webUrl}}upfile/{{likArt.head}}" alt=""></span>
+                  <span class="author_name">{{likArt.author}}</span>
+                  <small>{{likArt.created_at}}</small>
+                </a>
+                <div class="author_title">
+                  <a [routerLink]="['/artical',likArt.blog_id]" >{{likArt.title}}</a>
+                </div>
+                <p class="author_content">
+                    {{likArt.content | filter:266}}
+                </p>
+                <div class="meta">
+                  <a [routerLink]="['/category',likArt.category_id]" class="meta_theme">
+                    {{likArt.categoryname}}
+                  </a>
+                  <a href="">
+                    <img src="../../assets/images/response.png" alt="">
+                    {{likArt.like_count}}
+                  </a>
+                  <a>
+                    <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+                    {{likArt.comment_count}}
+                  </a>
+                </div>
+              </div>
+
+            <div class="spinner" *ngIf="varWaitLoad">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+
+            <div class="load_more" *ngIf="noMoreLike" (click)="funGetMore('like')">
+              阅读更多
+            </div>
+            <div class="noMore" *ngIf="!noMoreLike">
+              没有更多啦!
+            </div>
+
+           </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="right col-lg-3  col-md-3 col-sm-3">
+      <div class="edit_title" style="display: block;">
+        <p>个人介绍:</p>
+        <p>{{info.introduce}}</p>
+      </div>
+      <div class="introduce">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<span title="回到顶部" id="personalToTop"  class="HomeToTop">
+  <a name="HomeTop">
+    <img src="../../assets/images/arrow1.png" alt="">
+  </a>
+</span>

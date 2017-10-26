@@ -1,0 +1,116 @@
+.menuContainer{
+  height:800px;
+  background-color: #696969;
+  margin-bottom:-270px;
+}
+.panel_bg{
+  background-color: #999;
+  height:500px;
+  top:15%;
+}
+.menuList{
+  list-style-type:none;
+  width:400px;
+  padding: 0;
+  margin:160px auto 40px;
+  overflow: hidden;
+
+}
+.menuList li{
+  display: inline-block;
+  float:left;
+  padding:20px;
+  width:100px;
+  height:100px;
+  border:1px solid #666;
+  border-radius:6px;
+  margin-left:15px;
+  margin-top:15px;
+  font-size:20px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 24px;
+}
+
+.menuList > li:hover{
+  border:1px solid #eeeeee;
+  -webkit-box-shadow:10px 10px 10px #f2dede;
+  -moz-box-shadow: 10px 10px 10px #f2dede;
+  box-shadow: 10px 10px 10px #999;
+}
+
+.selectMenuList{
+  border:1px solid #eeeeee;
+  -webkit-box-shadow:10px 10px 10px #f2dede;
+  -moz-box-shadow: 10px 10px 10px #f2dede;
+  box-shadow: 10px 10px 10px #999;
+}
+
+/*文章审核*/
+.artChange{
+  background-color: #f5f5f6;
+  padding-bottom:60px;
+}
+.artbody{
+  /*border:1px solid #ddd;*/
+}
+small span{
+  margin-left:15px;
+  color:#999;
+}
+.footer{
+  border-top:1px solid #555;
+  padding-top:50px;
+  margin-bottom:50px;
+}
+.btnAllow{
+  border-radius:8px;
+  margin-top:20px;
+  text-align: center;
+  height:38px;
+  line-height:38px;
+  font-weight: bold;
+  font-size:20px;
+}
+.left{
+  width:250px;
+  height:540px;
+  border:1px solid #ddd;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: #ffffff;
+  list-style: none;
+  font-size:17px;
+  font-weight:500;
+  position: fixed;
+  right:-250px;
+  top:100px;
+}
+.left ul{
+  margin: 0;
+  padding: 0;
+}
+.left li{
+  padding:2px 15px;
+  list-style: none;
+}
+.artCate{
+  position: absolute;
+  height:100px;
+  left:-44px;
+  top:40%;
+  padding:10% 10px;
+  margin-top:-15px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border:1px solid #ccc;
+}
+.left ul li:hover{
+  background-color: #999;
+}
+.panel-heading>span{
+  display: inline-block;
+  margin-left:15px;
+  padding:7px;
+  font-size:18px;
+}

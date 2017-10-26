@@ -1,0 +1,107 @@
+<div class="container" *ngIf="alertShow" >
+  <div class="row" style="margin-top: 60px; width:50%;position: fixed;left:25%; z-index:1000">
+    <div class="alert alert-warning" style="text-align: center">
+      {{alertContent}}
+      <span class="pull-right" (click)="closeAlert()" style="cursor:pointer">&times;</span>
+    </div>
+  </div>
+</div>
+
+<!--主体-->
+<div class="main">
+
+  <div class="main_header">
+  </div>
+  <div class="main_body">
+    <!---内容左边部分-->
+    <div class="main_left">
+      <div class="body_left">
+        <img src="../../assets/images/1011.png" alt="" width="100%" height="100px">
+      </div>
+      <!---作者及其书籍介绍-->
+      <div class="introduce">
+        <!--需要渲染的部分-->
+        <div class="author" *ngFor="let art of allArtical">
+          <a [routerLink]="['/PersonalCenter',art.user_id]" style="text-decoration: none">
+            <span><img src="{{webUrl}}upfile/{{art.head}}" alt=""></span>
+            <span class="author_name">{{art.author}}</span>
+            <small>{{art.created_at}}</small>
+          </a>
+          <div class="author_title">
+            <a [routerLink]="['/artical',art.blog_id]">{{art.title}}</a>
+          </div>
+          <p class="author_content">
+            {{art.content | filter:266}}
+          </p>
+          <div class="meta">
+            <a [routerLink]="['/category',art.category_id]" class="meta_theme">
+              {{art.categoryname}}
+            </a>
+            <a>
+              <img src="../../assets/images/response.png" alt="">
+              {{art.comment_count}}
+            </a>
+            <a>
+              <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+              {{art.like_count}}
+            </a>
+          </div>
+        </div>
+
+        <div class="spinner" *ngIf="varWaitLoad">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+
+        <div class="load_more" *ngIf="noMore" (click)="funGetMore()">
+          阅读更多
+        </div>
+        <div class="noMore" *ngIf="!noMore">
+          没有更多啦!
+        </div>
+      </div>
+
+
+
+      <div class="footer">
+        <p><span>关于简书</span> ·<span> 联系我们</span> · <span>加入我们</span> ·
+          <span>简书出版</span> ·<span> 品牌与徽标 </span>·<span> 帮助中心</span> · <span>合作伙伴</span></p>
+        ©2012-2017 上海佰集信息科技有限公司 / Tel:021-61995350 / 简书 / 沪ICP备11018329号-5 / 沪公网安备31010402002252号
+      </div>
+    </div>
+    <!---内容右边部分-->
+
+    <div class="main_right">
+      <div class="recommend_author">
+        <p class="recommend_menu">
+          推荐作者
+<!--          <span>
+             <img src="../../assets/images/reload.png" alt="" >
+            换一批
+          </span>-->
+        </p>
+        <ul class="recommend_content">
+          <li *ngFor="let auth of recommendAuthor">
+            <span class="recommend_img">
+              <a [routerLink]="['/PersonalCenter',auth.userid]"><img src="{{webUrl}}upfile/{{auth.head}}" alt=""></a>
+            </span>
+            <div class="recommend_notice">
+              <p>
+                {{auth.nickname}}
+                <span (click)="funAddFollow(auth.userid,$event)" style="cursor:pointer"> <img src="../../assets/images/puls.png" alt="">关注</span>
+              </p>
+              <small>写了{{auth.size}}字·{{auth.lik_num}}人喜欢</small>
+            </div>
+          </li>
+        </ul>
+        <a [routerLink]="['/recommendAuthor']"  class="recommend_all">查看全部&nbsp;></a>
+      </div>
+    </div>
+  </div>
+</div>
+<span title="回到顶部" id="sevenToTop"  class="HomeToTop">
+  <a name="HomeTop">
+    <img src="../../assets/images/arrow1.png" alt="">
+  </a>
+</span>

@@ -1,0 +1,201 @@
+
+<!--主体-->
+
+<div class="main">
+  <!--
+  <div class="main_header" id="main_header">
+    <ul id="turn_left">
+      <li><img src="../../assets/images/turn_1.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_2.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_3.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_4.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_5.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_6.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_7.png" alt=""></li>
+    </ul>
+    <ul id="turn_right" >
+      <li><img src="../../assets/images/turn_9.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_7.png" alt=""></li>
+      <li><img src="../../assets/images/turn_6.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_5.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_4.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_3.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_2.jpg" alt=""></li>
+      <li><img src="../../assets/images/turn_1.jpg" alt=""></li>
+    </ul>
+  </div>
+  <div class="turn_player" id="turn_player">
+    <span id="player_left" class="pull-left">&lt;</span>
+    <span id="player_right" class="pull-right">&gt;</span>
+  </div>
+  -->
+
+  <div class="main_body" style="margin-top:78px;">
+    <!---内容左边部分-->
+    <div class="main_left">
+      <div class="body_left">
+<!--        <a [routerLink]="['category']">
+          <img src="../../assets/images/category-1.png" alt="">
+          <span>微小说</span>
+        </a>-->
+        <!--还有主题的id没填写-->
+        <a *ngFor="let x of categoryContent" [routerLink]="['./category',x.category_id]">
+          <img src="{{webUrl}}upfile/{{x.head}}" alt="">
+          <span>{{x.categoryname}}</span>
+        </a>
+        <span class="more_theme">
+          <a [routerLink]="['./theme']">更多热门专题专题&nbsp;&gt;</a>
+        </span>
+      </div>
+      <div class="split-line"></div>
+      <!---作者及其书籍介绍-->
+      <div class="introduce">
+        <!--需要渲染的部分-->
+<!--        <div class="author">
+          <a>
+            <span><img src="../../assets/images/category-1.png" alt=""></span>
+            <span class="author_name">达芬奇</span>
+            <small>09.09&nbsp;13:27</small>
+          </a>
+          <div class="author_title">
+            <a href="" >那个荷兰男人的眼里有火</a>
+          </div>
+          <p class="author_content">
+            这是简书第一个征集「情书」的专题。 每一个爱好文字的人，都应该有过为另一个
+            Ta提笔写情书的冲动。或许你的爱情是单车上穿着白衬衫和连衣裙的你我，或许你
+            的爱情是流光溢彩的霓虹灯和...
+          </p>
+          <div class="meta">
+            <a href="" class="meta_theme">
+                生活经验
+            </a>
+            <a href="">
+              <img  src="../../assets/images/eye.png" alt="">
+                424
+            </a>
+            <a href="">
+              <img src="../../assets/images/response.png" alt="">
+              43432
+            </a>
+            <a>
+              <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+                1233
+            </a>
+          </div>
+        </div>-->
+
+
+
+        <div class="author" *ngFor="let x of articalDetail">
+          <a [routerLink]="['./PersonalCenter',x.userid]" style="text-decoration: none">
+           <!--a.blog_id as blog_id,a.head,a.userid as userid,-->
+            <span><img src="{{webUrl}}upfile/{{x.head}}" alt=""></span>
+            <span class="author_name">{{x.nickname}}</span>
+            <small>{{x.created_at}}</small>
+          </a>
+          <div class="author_title">
+            <a [routerLink]="['./artical',x.blog_id]" >{{x.title}}</a>
+          </div>
+          <p class="author_content">
+           {{x.content | filter:266}}
+          </p>
+          <div class="meta">
+            <a [routerLink]="['./category',x.category_id]" class="meta_theme">
+              {{x.categoryname}}
+            </a>
+<!--            <a href="">
+              <img  src="../../assets/images/eye.png" alt="">
+              424
+            </a>-->
+            <a>
+              <img src="../../assets/images/response.png" alt="">
+              {{x.com_num}}
+            </a>
+            <a>
+              <img class="meta_ico" src="../../assets/images/heart.png" alt="">
+              {{x.lik_num}}
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="spinner" *ngIf="varWaitLoad">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+
+      <div class="load_more" *ngIf="noMore" (click)="funGetMore()">
+        阅读更多
+      </div>
+      <div class="noMore" *ngIf="!noMore">
+        没有更多啦!
+      </div>
+
+
+      <div class="footer">
+        <p><span>关于简书</span> ·<span> 联系我们</span> · <span>加入我们</span> ·
+          <span>简书出版</span> ·<span> 品牌与徽标 </span>·<span> 帮助中心</span> · <span>合作伙伴</span></p>
+        ©2012-2017 上海佰集信息科技有限公司 / Tel:021-61995350 / 简书 / 沪ICP备11018329号-5 / 沪公网安备31010402002252号
+      </div>
+    </div>
+    <!---内容右边部分-->
+
+    <div class="main_right">
+      <div class="recommend">
+        <!--<a [routerLink]="['news']"><img src="../../assets/images/new_up.png" alt=""></a>-->
+        <a  [routerLink]="['./seven']"><img src="../../assets/images/sevenhot.png" alt=""></a>
+        <a [routerLink]="['./thirty']"><img src="../../assets/images/thirtyhot.png" alt=""></a>
+        <!--<img src="../../assets/images/publish.png" alt="">-->
+      </div>
+
+      <div class="recommend_author">
+        <p class="recommend_menu">
+          推荐作者
+          <span>
+             <!--<img src="../../assets/images/reload.png" alt="" >-->
+          </span>
+        </p>
+        <ul class="recommend_content">
+<!--          <li>
+            <span class="recommend_img">
+              <img src="../../assets/images/recommend.jpg" alt="">
+            </span>
+            <div class="recommend_notice">
+              <p>
+                考拉熊
+                <span><img src="../../assets/images/puls.png" alt="">关注</span>
+              </p>
+              <small>写了20.3千字</small>
+            </div>
+          </li>-->
+          <li *ngFor="let x of recommendAuthor">
+            <span class="recommend_img">
+              <a [routerLink]="['./PersonalCenter',x.userid]"><img src="{{webUrl}}upfile/{{x.head}}" alt=""></a>
+            </span>
+            <div class="recommend_notice">
+              <p>
+                {{x.nickname}}
+                <span (click)="funAddFollow(x.userid,$event)"><img src="../../assets/images/puls.png" alt="">关注</span>
+                <!--<span (click)="funAddFollow(x.userid)" *ngIf="varConcrenHidden">已关注</span>-->
+              </p>
+              <small>写了{{x.size}}字·{{x.lik_num}}人喜欢</small>
+            </div>
+          </li>
+        </ul>
+        <a [routerLink]="['./recommendAuthor']"  class="recommend_all">查看全部&nbsp;></a>
+      </div>
+    </div>
+    <style>
+
+    </style>
+  </div>
+</div>
+
+<span title="回到顶部" id="HomeToTop"  class="HomeToTop">
+  <a name="HomeTop">
+    <img src="../../assets/images/arrow1.png" alt="">
+  </a>
+</span>

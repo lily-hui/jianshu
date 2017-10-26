@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="src/assets/javascript/jquery-3.2.1.js"></script>
+  <link rel="stylesheet" href="src/assets/style/bootstrap.css">
+  <style>
+    .leftNav{
+      position: fixed;
+      width:200px;
+      height:700px;
+      border:1px solid #ccc;
+      top:60px;
+      left:0;
+      margin:0;
+    }
+    .leftNavMenu{
+      position: fixed;
+      padding-top:20px;
+      margin:0;
+      width:200px;
+    }
+    .leftNavMenu  li{
+      list-style: none;
+      margin-left:-42px;
+      padding:10px 0 10px 20px;
+    }
+    .leftNavMenu > li:hover{
+      background-color: #bbb;
+    }
+
+    .temp{
+      right:-20px;
+    }
+    .split{
+      padding:8px 5px;
+      border-bottom:1px solid #ccc;
+    }
+    .sex{
+      font-size:16px;
+      color:#666;
+      padding:25px 0;
+      border-bottom:1px solid #eee;
+    }
+    .sex input{
+      margin-left:15px;
+    }
+    .sendBtn{
+      border-radius:30px;
+      height:38px;
+      width:100px;
+      background-color: #4cae4c;
+      color:#ffffff;
+      outline: none;
+      border:1px solid #4cae4c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid" style="margin-top:60px;">
+    <!--个人基本信息完善-->
+    <div class="col-md-offset-2 col-md-10 temp" style="display:none;border:1px solid #ff2a00;">
+      <div class="col-md-7 col-md-offset-2">
+        <div class="row sex">
+            <div class="col-md-2">性别:</div>
+            <div class="col-md-2">男: <input type="radio" name="sex" value="1"></div>
+            <div class="col-md-2">女: <input type="radio" name="sex" value="2"></div>
+            <div class="col-md-2">保密: <input type="radio" name="sex" value="3"></div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-2">
+            个人介绍:
+          </div>
+          <div class="col-md-offset-3">
+            <textarea class="form-control" style="resize: horizontal" name="" id="" cols="20" rows="5"></textarea>
+          </div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-2">
+            个人网站:
+          </div>
+          <div class="col-md-offset-3">
+            <input type="text" class="form-control" style="width:60%;">
+          </div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-2">
+            昵称:
+          </div>
+          <div class="col-md-offset-3">
+            <input type="text" class="form-control" style="width:60%;">
+          </div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-2">
+            电子邮件:
+          </div>
+          <div class="col-md-offset-3">
+            <input type="text" class="form-control" style="width:60%;">
+          </div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-2">
+            头像:
+          </div>
+          <div class="col-md-offset-3">
+            <input type="file" class="form-control" style="width:60%;">
+          </div>
+        </div>
+
+        <div class="row sex">
+          <div class="col-md-offset-3">
+            <input type="button" class="form-control" value="保存" style="width:60%;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!--收藏管理-->
+
+    <!--修改文章-->
+
+
+    <!--简信-->
+    <div class="col-md-offset-2 col-md-10 temp" style="border:1px solid #ff2a00;">
+      <div class="col-md-7 col-md-offset-2">
+        <div class="row" style="border-bottom:1px solid #eee;">
+          <h3 class="text-center">与曾聊天中</h3>
+        </div>
+      </div>
+      <!--消息框-->
+      <div class="col-md-7 col-md-offset-2" style="height:420px;overflow: hidden;border:1px solid #ccc;">
+
+      </div>
+
+      <div class="col-md-7 col-md-offset-2" style="margin-top:20px;">
+        <textarea name="" style="resize:vertical;" class="form-control" id="" cols="20" rows="3"></textarea>
+      </div>
+
+      <div class="col-md-7 col-md-offset-2" style="margin-top:10px;">
+        <span class="pull-left" style="color:#666;">enter键发送</span>
+        <input type="button" class="sendBtn pull-right" value="发送">
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="leftNav">
+       <ul class="leftNavMenu" id="leftNavMenu" style="border:1px solid #ffff00;">
+          <li>文章管理</li>
+          <li>文章管理</li>
+          <li>文章管理</li>
+          <li>文章管理</li>
+          <li>文章管理</li>
+          <li>文章管理</li>
+      </ul>
+  </div>
+</body>
+</html>

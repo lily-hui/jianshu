@@ -1,0 +1,9 @@
+.articalCategory{
+  display: inline-block;
+  height:36px;
+  /*border:1px solid #ff0000;*/
+  position: absolute;
+  top:0;right: 16%;
+  line-height:36px;
+  color:#666;
+}

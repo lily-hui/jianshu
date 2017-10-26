@@ -1,0 +1,206 @@
+
+<div class="navbar navbar-fixed-top" style="z-index: 9999" >
+  <div class="container" style="min-width:768px;height:58px;">
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1 col-xs-3" style="height:58px;">
+        <a [routerLink]="['']" class="log">
+          <img src="../../assets/images/logo.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="top:60px; position: fixed" *ngIf="varAlertToggle">
+  <div class="col-md-offset-4 col-md-6">
+    <div class="alert alert-info">
+      <strong class="text-center">{{alertContet}}</strong>
+    </div>
+  </div>
+
+</div>
+
+<div id="Cover" class="container-fluid">
+  <div class="row menuContainer">
+    <div id="menuCover" class="panel panel_bg col-md-offset-3 col-md-6" style="margin-top:-600px;">
+      <ul class="menuList" id="menuList">
+        <li>文章管理</li>
+        <li>目录管理</li>
+        <li>举报管理</li>
+        <li>用户管理</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="temp" class="container-fluid" style="margin-top:100px;">
+
+  <!--文章修改-->
+  <div style="display: none;" class="row">
+    <div class="col-md-6 col-md-offset-3 artbody" *ngFor="let artical of nowArtical">
+      <div class="col-md-10 col-md-offset-1">
+        <h1>{{artical.title}}</h1>
+        <small class="pull-right">
+          <span>作者:</span>{{artical.user_id}}
+          <span>时间:</span>{{artical.created_at}}
+          <span>字数:</span>{{artical.size}}
+        </small>
+      </div>
+      <div class="clearfix" style="margin:15px auto;"></div>
+      <div class="content">
+        <div [innerHTML]="artical.content" style="font-size:17px;"></div>
+      </div>
+      <div class="footer">
+        <div class="col-md-2">
+          <h3>类别:</h3>
+        </div>
+        <div class="col-md-6">
+          <select [(ngModel)]="selected" (change)="funSelChange()" name="" id="" class="form-control" style="margin-top:15px;">
+            <option *ngFor="let cat of category" value="{{cat.category_id}}">{{cat.categoryname}}</option>
+          </select>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12" style="margin:15px 0;">
+          <div class="col-md-2">
+            <h4>介绍:</h4>
+          </div>
+          <div class="col-md-10">
+            <h4>{{categoryIntroduce}}</h4>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <h4 style="margin-left:15px;">审核告知:</h4>
+        <textarea [(ngModel)]="checkOk" name="a" id="a" cols="30" rows="10" class="form-control" style="resize: vertical;font-size:18px;">
+
+        </textarea>
+
+          <input type="button" value="保存" style="margin-top:20px;margin-bottom:50px;" class="form-control text-center" (click)="funSave()">
+          <input type="button" value="删除" class="form-control text-center" (click)="funDelete()">
+
+          <div class="clearfixed"></div>
+          <div style="height:100px;"></div>
+      </div>
+    </div>
+
+    <div class="left" id="leftContainer">
+      <div class="artCate" id="leftMenu">
+        目 <br>录
+      </div>
+      <ul id="left">
+        <li *ngFor="let art of articalContainer" (click)="funShowArtical(art.blog_id)">{{art.title | filter:15}}</li>
+      </ul>
+      <ul class="pager">
+        <li (click)="funChangePage('prev')"  style="position: absolute;left: 10px; bottom:0;"><a>←</a></li>
+        <li (click)="funChangePage('next')" style="position: absolute;right: 10px; bottom:0;"><a>→</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!--目录修改-->
+  <div  class="row" style="height:650px;display: none">
+    <div class="col-md-offset-3 col-md-6" style="margin-top: 100px;">
+      <div class="panel panel-default">
+        <div class="panel-heading" id="cate">
+          <span style="border-bottom:2px solid #555;">新建分类</span>
+          <span>修改分类</span>
+        </div>
+
+
+
+        <div id="cateBindTwo" class="panel-body">
+          <form action="" #cateTwoRef="ngForm" *ngFor="let nowCate of nowCategory">
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录名:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text"  #name2Ref [(ngModel)]="nowCate.categoryname" name="categoryName" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录图片:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录介绍:</h4>
+              </div>
+              <div class="col-md-8">
+                <textarea  class="form-control" [(ngModel)]="nowCate.introduce" #introduce2Ref name="categoryIntroduce" style="margin-top: 15px;resize: vertical"></textarea>
+              </div>
+            </div>
+            <div class="btn btn-default btn-block" (click)="funSubCate('edit',cateTwoRef.value)" style="width:65%;margin-left:180px; margin-top:50px;">保存</div>
+          </form>
+        </div>
+
+
+        <div id="cateBindOne" class="panel-body" style="display: none">
+          <form action="" #cateOneRef="ngForm">
+
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">新建目录名:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" #nameRef [(ngModel)]="b" name="categoryName" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录图片:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="file" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录介绍:</h4>
+              </div>
+              <div class="col-md-8">
+                <textarea name="categoryIntroduce" [(ngModel)]="a" #introduceRef class="form-control" style="margin-top: 15px;resize: vertical"></textarea>
+              </div>
+            </div>
+            <div class="btn btn-default btn-block" (click)="funSubCate('new',cateOneRef.value)" style="width:65%;margin-left:180px; margin-top:50px;">保存</div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--目录菜单-->
+
+    <div class="left" id="categoryMenuContainer">
+      <div class="artCate" id="categoryMenu">
+        目 <br>录
+      </div>
+      <ul style="height:520px;overflow-y: scroll;">
+        <li *ngFor="let cate of category" (click)="funcateInfoShow(cate.category_id)">{{cate.categoryname}}</li>
+      </ul>
+    </div>
+
+   </div>
+
+  <!--举报-->
+  <div style="display:none;" class="row">
+    <div class="col-md-offset-3 col-md-6 artbody" style="border:1px solid #ff0000;">
+
+    </div>
+
+    <div class="left" id="reportMenuContainer">
+      <div class="artCate" id="reportMenu">
+        目 <br>录
+      </div>
+      <ul style="height:520px;overflow-y: scroll; border:1px solid #ff0000;">
+        <li *ngFor="let rep of report" (click)="funReportInfoShow(rep.id)">{{rep.content | filter:24}}</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,83 @@
+
+<div class="container" style="margin-top:88px;">
+  <img class="img1"  src="../../assets/images/1040.png"
+       height="100" width="64%" alt="">
+  <p class="p1" style="margin-top:20px;">如何称为签约作者</p>
+</div>
+<div id="div1" class="a" style="margin-top:38px;">
+  <ul style="border-bottom:1px solid #ddd;font-size:17px; font-weight:600;">
+    <li class="active">推荐</li>
+    <!--   <li>城市</li>-->
+  </ul>
+  <div class="class" style="display:block;">
+
+    <div class="tupian1" style="display: block" *ngFor="let x of recommendAuthor">
+      <img style="cursor: pointer;" [routerLink]="['/PersonalCenter',x.userid]" src="{{webUrl}}upfile/{{x.head}}"  height="80" width="80"/>
+      <div class="shang">
+      </div>
+      <h2>{{x.nickname}}</h2>
+      <!--<p class="p2">{{x.introduce | filter:30}}</p>-->
+      <input type="button" (click)="funAddFollow(x.userid,$event)" value="关注">
+      <p style="margin-top: -5px;"></p>
+      {{x.introduce | filter:30}}
+      <hr color="#eaeaea">
+      <p style="font-size: 14px">写了{{x.size}}字·{{x.lik_num}}人喜欢</p>
+    </div>
+
+    <!--    <div class="tupian1" style="display: block">
+          <img src="../images/02.jpg" height="80" width="80"/>
+          <div class="shang">
+          </div>
+          <h2>简书交友</h2>
+          <p class="p2">据说在简书认真写作的人都可以在这里找到TA的灵魂伴侣。玩转简书...</p>
+          <input type="button" value="+关注">
+          <br/>
+          <hr color="#eaeaea">
+          <p style="font-size: 14px">719篇文章.121.3K关注</p>
+        </div>-->
+
+
+
+  </div>
+  <div class="class">
+    <div class="tupian1" style="display: block">
+      <img src="../images/05.jpg" height="80" width="80"/>
+      <div class="shang">
+      </div>
+      <h2>简书交友</h2>
+      <p class="p2">据说在简书认真写作的人都可以在这里找到TA的灵魂伴侣。玩转简书...</p>
+      <input type="button" value="+关注">
+      <br/>
+      <br/>
+      <hr color="#eaeaea">
+      <p style="font-size: 14px">719篇文章.121.3K关注</p>
+    </div>
+  </div>
+  <!--  <div class="class">
+      <div class="tupian1" style="display: block">
+        <img src="../images/01.jpg" height="80" width="80"/>
+        <div class="shang">
+        </div>
+        <h2>简书交友</h2>
+        <p class="p2">据说在简书认真写作的人都可以在这里找到TA的灵魂伴侣。玩转简书...</p>
+        <input type="button" value="+关注">
+        <br/>
+        <br/>
+        <hr color="#eaeaea">
+        <p style="font-size: 14px">719篇文章.121.3K关注</p>
+
+      </div>
+    </div>-->
+</div>
+<div class="container-fluid" style="margin-top:30px;margin-bottom:40px;">
+  <div class="row" >
+    <div class="col-md-offset-3 col-md-6">
+      <div class="load_more" *ngIf="noMore" (click)="funGetMore()">
+        阅读更多
+      </div>
+      <div class="noMore" *ngIf="!noMore" style="margin-top:30px;margin-bottom:40px;">
+        没有更多啦!
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="src/assets/javascript/jquery-3.2.1.js"></script>
+  <link rel="stylesheet" href="src/assets/style/bootstrap.css">
+  <style>
+    body{
+      padding: 0;
+      margin:0;
+    }
+    .menuContainer{
+        height:900px;
+        background-color: #696969;
+    }
+    .panel_bg{
+      background-color: #999;
+      height:500px;
+      top:15%;
+    }
+    .menuList{
+      list-style-type:none;
+      width:400px;
+      padding: 0;
+      margin:160px auto 40px;
+      overflow: hidden;
+
+    }
+    .menuList li{
+      display: inline-block;
+      float:left;
+      padding:20px;
+      width:110px;
+      height:110px;
+      border:1px solid #f0f0f0;
+      border-radius:6px;
+      margin-left:15px;
+      margin-top:15px;
+    }
+
+
+    /*文章审核*/
+    .artChange{
+      background-color: #f5f5f6;
+      padding-bottom:60px;
+    }
+    .artbody{
+        border:1px solid #ddd;
+    }
+    small span{
+      margin-left:15px;
+      color:#999;
+    }
+    .footer{
+      border:1px solid #555;
+    }
+    .btnAllow{
+      border-radius:8px;
+      margin-top:20px;
+      text-align: center;
+      height:38px;
+      line-height:38px;
+      font-weight: bold;
+      font-size:20px;
+    }
+    .left{
+      width:250px;
+      height:auto;
+      border:1px solid #ddd;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      background-color: #ffffff;
+      list-style: none;
+      padding:15px 0;
+      font-size:17px;
+      font-weight:500;
+      position: fixed;
+      right:0px;
+      top:120px;
+    }
+    .left li{
+      padding:10px 15px;
+    }
+    .left .artCate{
+      position: absolute;
+      height:100px;
+      left:-44px;
+      top:40%;
+      padding:10% 10px;
+      margin-top:-15px;
+      border:1px solid #999999;
+    }
+    .panel-heading>span{
+      display: inline-block;
+      margin-left:15px;
+      padding:7px;
+      font-size:18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid" style="display:none;">
+    <div class="row menuContainer">
+      <div class="panel panel_bg col-md-offset-3 col-md-6">
+        <ul class="menuList">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid" style="margin-top:100px;">
+
+    <div style="display: none;" class="row">
+      <div class="col-md-6 col-md-offset-3 artbody">
+          <div class="col-md-10 col-md-offset-1">
+            <h1>时光不负有心人，时光不问赶路人</h1>
+              <small class="pull-right">
+                <span>作者:</span>fly
+                <span>时间:</span>2017-06-23
+                <span>字数:</span>3412字
+              </small>
+          </div>
+          <div class="clearfix" style="margin:15px auto;"></div>
+          <div class="content">
+
+          </div>
+          <div class="footer">
+            <div class="col-md-2">
+             <h3>类别:</h3>
+            </div>
+            <div class="col-md-6">
+              <select name="" id="" class="form-control" style="margin-top:15px;">
+                <option value="a">Nia a</option>
+                <option value="a">Nia a</option>
+                <option value="a">Nia a</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+            <h4 style="margin-left:15px;">审核告知:</h4>
+            <textarea name="a" id="a" cols="30" rows="10" class="form-control" style="resize: vertical;font-size:18px;">
+
+            </textarea>
+
+            <div class="btnAllow col-md-6" style="background-color: #4cae4c;opacity: 0.6">
+                SAVE
+            </div>
+            <div class="btnAllow col-md-6" style="background-color: #ff5425;opacity: 0.6">
+                DELETE
+            </div>
+          </div>
+
+          <ul class="left">
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <li>时光不负有心人，时光不问赶路人</li>
+            <div class="artCate">
+              目 <br>录
+            </div>
+          </ul>
+      </div>
+    </div>
+
+    <div style="display: none;" class="row" style="height:650px;">
+      <div class="col-md-offset-3 col-md-6" style="margin-top: 100px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <span style="border-bottom:2px solid #ddd;">新建分类</span>
+              <span>修改分类</span>
+            </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">新建目录名:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录图片:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="file" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录介绍:</h4>
+              </div>
+              <div class="col-md-8">
+                <textarea class="form-control" style="margin-top: 15px;resize: vertical"></textarea>
+              </div>
+            </div>
+            <div class="btn btn-default btn-block" style="width:65%;margin-left:180px; margin-top:50px;">保存</div>
+          </div>
+
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录名:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录图片:</h4>
+              </div>
+              <div class="col-md-8">
+                <input type="file" class="form-control" style="margin-top: 15px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <h4 style="color:#555">目录介绍:</h4>
+              </div>
+              <div class="col-md-8">
+                <textarea class="form-control" style="margin-top: 15px;resize: vertical"></textarea>
+              </div>
+            </div>
+            <div class="btn btn-default btn-block" style="width:65%;margin-left:180px; margin-top:50px;">保存</div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div style="display:none;" class="row">
+      用户管理
+    </div>
+
+  </div>
+</body>
+</html>

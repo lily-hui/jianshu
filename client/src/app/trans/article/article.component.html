@@ -1,0 +1,276 @@
+<div class="container" *ngIf="varAlertHidden" style="margin-top: 60px;">
+  <div class="row" style="position: fixed;top:58px;left: 25%;width:50%; text-align: center">
+    <div class="alert alert-success">
+      <strong>
+        {{varAlertContent}}
+      </strong>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="container" *ngFor="let x of articalContent">
+  <div class="row">
+    <div>
+      <div class="main">
+        <div class="article">
+          <h2 class="title">{{x.title}}</h2>
+
+          <div class="author">
+            <a class="avatar" [routerLink]="['/PersonalCenter',x.userid]">
+              <img src="{{webUrl}}upfile/{{x.head}}" alt="96" style="width:48px;height:48px;border-radius: 50%;">
+            </a>
+            <div class="info">
+              <span class="tag">作者</span>
+              <span class="name"><a [routerLink]="['/PersonalCenter',x.userid]">{{x.nickname}}</a></span>
+              <a class="btn btn-r btn1" style="width:80px;" (click)="funAddFollow(x.userid)" *ngIf="concernToggle">
+                <img class="addImg" src="../../assets/images/加号.png" alt="">
+                <span style="padding:0 4px; text-align: center">关注</span>
+              </a>
+              <a class="btn btn-r btn1" (click)="funAddFollow(x.userid)" *ngIf="!concernToggle" style="border:1px solid #969696;background-color:#f0f0f0; width:90px;color:#333;">
+                <span style="padding:0 4px;margin-left:10px;text-align: center">已关注</span>
+              </a>
+              <div class="meta">
+                <span class="publish-time" title="">{{x.time}}*</span>
+                <span class="wordage">字数 {{x.size}}</span>
+                <span class="comments-count">评论 {{x.com_num}}</span>
+                <span class="likes-count">喜欢 {{x.lik_num}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="show-content" [innerHTML]="x.content" id="show-content">
+          </div>
+
+          <div class="show-foot">
+            <a class="notebook">
+              <img src="../../assets/images/riji.png" alt="">
+              <span>日记本</span>
+            </a>
+            <div class="copyright" title="转载请联系作者获得授权，并标注“简书作者”。">
+              © 著作权归作者所有
+            </div>
+            <div class="modal-wrap">
+              <a id="report-modal"  (click)="funShowReport()">举报文章</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-info" *ngFor="let info of authorInfo">
+          <div class="info">
+            <a class="avatar" >
+              <img src="{{webUrl}}upfile/{{x.head}}" alt="96" style="width:48px;height:48px;border-radius: 50%;">
+            </a>
+            <a class="btn btn-r btn1" (click)="funAddFollow(x.userid)" *ngIf="concernToggle" style="border-radius:30px;">
+              <img src="../../assets/images/加号.png" alt="">
+              <span>关注</span>
+            </a>
+            <a class="btn btn-r btn1" (click)="funAddFollow(x.userid)" *ngIf="!concernToggle" style="border:1px solid #969696;background-color:#fff;border-radius:30px;color:#333">
+              <span>已关注</span>
+            </a>
+            <a class="title">{{x.nickname}}</a>
+            <p>写了{{info.size}} 字，被{{info.fans}}人关注，获得了 {{info.lik_num}} 个喜欢</p></div>
+          <div class="signature">
+            {{info.introduce | filter:60}}
+          </div>
+        </div>
+
+        <div class="support-author">
+          <p>我有故事，也有茶，欢迎你来我家坐，聊聊天，喝喝茶，一起品味人生！</p>
+        </div>
+        <div class="meta-bottom">
+          <div class="like">
+
+            <div class="btn like-group" *ngIf="varLikeToggle" (click)="funAddLike(x.userid)">
+              <div class="btn-like">
+                <a class="btn btn-r btn1" >
+                  <img src="../../assets/images/xin.png" alt="">
+                  <span>喜欢</span>
+                  <a class="num">{{x.lik_num}}</a>
+                </a>
+              </div>
+            </div>
+
+            <div class="btn like-group" *ngIf="!varLikeToggle" (click)="funAddLike(x.userid)" style="background-color: #ea6f5a;color:#f2dede">
+              <div class="btn-like">
+                <a class="btn btn-r btn1" >
+                  <img src="../../assets/images/xin.png" alt="">
+                  <span style="color:#f2dede">喜欢</span>
+                  <a class="num">{{x.lik_num}}</a>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="share-group">
+            <a href="" class="share-circle" title="分享到微信">
+              <img src="../../assets/images/weixin1.png" alt="">
+            </a>
+            <a href="" class="share-circle" title="分享到微博">
+              <img src="../../assets/images/weibo1.png" alt="">
+            </a>
+            <a href="" class="share-circle" title="下载长微博图片">
+              <img src="../../assets/images/photo.png" alt="">
+            </a>
+            <a href="" class="share-circle more-share" title="">
+              更多分享
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="comment-list">
+            <div>
+              <form class="new-comment">
+                <a class="avatar">
+                  <img src="{{webUrl}}upfile/{{userHead}}">
+                </a>
+                <textarea (click)="addShow()" (keydown)="funKeydown(CommentRef.value,$event)"  #CommentRef [(ngModel)]="commentContent" name="commentContent" placeholder="写下你的评论...">
+
+                </textarea>
+              <!--<div *ngIf="write" class="write-function-block">
+                  <div class="hint">Ctrl+Return 发表</div>
+                  <a class="btn btn-send">发送</a>
+                  <a class="cancel" (click)="funContentHidden()">取消</a>
+                </div>-->
+
+                <div [ngStyle]="writeContentHidden" class="write-function-block">
+                  <div class="hint">Enter 发表</div>
+                  <a class="btn btn-send" (click)="funSendComment(CommentRef.value)">发送</a>
+                  <a class="cancel" (click)="funContentHidden()">取消</a>
+                </div>
+
+              </form>
+            </div>
+            <div class="normal-comment-list">
+              <div class="top">
+                <span>评论</span>
+                <a class="author-only">只看作者</a>
+                <a class="close-btn" style="display: none;">关闭评论</a>
+<!--                <div class="pull-right">
+                  <a [ngClass]="{'pull-right-show':likeComment}" (click)="commentShow('like')" class="">按喜欢排序</a>
+                  <a [ngClass]="{'pull-right-show':ascComment}" (click)="commentShow('asc')" class="">按时间正序</a>
+                  <a [ngClass]="{'pull-right-show':descComment}" (click)="commentShow('desc')" class="">按时间倒序</a>
+                </div>-->
+              </div>
+              <div class="right-comment" >
+                <div *ngIf="likeComment" >
+                  <div class="comment" *ngFor="let com of articalComment">
+                    <div>
+                      <div class="author">
+                        <a [routerLink]="['/PersonalCenter',com.user_id]" class="avatar">
+                          <img src="{{webUrl}}upfile/{{com.head}}">
+                        </a>
+                        <div class="info">
+                          <span class="name">{{com.nickname}}</span>
+                          <div class="meta">
+                            <span> {{com.commented_at}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="comment-wrap">
+                        <p>
+                          {{com.content}}
+                        </p>
+                        <div class="tool-group">
+                         <!-- <a class="">
+                            <img src="../../assets/images/回复%20(1).png" alt="">
+                            <span (click)="addShow()">回复</span>
+                          </a>
+                          <a class="report">
+                            <span (click)="reportShow()">举报</span>
+                          </a>-->
+                        </div>
+                      </div>
+                    </div>
+<!--                    <div class="sub-comment-list">
+                      <div class="sub-comment">
+                      </div>
+                    </div>-->
+                    </div>
+
+                  <div class="spinner" *ngIf="varWaitLoad">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+
+                  <div class="load_more" *ngIf="noMore" (click)="funGetMore()">
+                    查看更多评论
+                  </div>
+                  <div class="noMore" *ngIf="!noMore">
+                      没有更多啦!
+                  </div>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--
+      <div class="side-tool" style="position: fixed;bottom:50px;right:50px;z-index: 1999">
+        <ul>
+          <li title="回到顶部" id="articaltop">
+             <span class="function-button">
+               <img src="../../assets/images/arrow1.png" alt="" style=" display: inline-block;height:30px;width:30px;">
+             </span>
+          </li>
+          <li title="将文章加入专题" style="padding-left: 5px">
+            <a class="js-submit-button">
+              <img src="../../assets/images/add.png" alt="">
+            </a>
+          </li>
+          <li title="收藏文章">
+            <a class="function-button">
+              <img src="../../assets/images/星星.png" alt="">
+            </a>
+          </li>
+          <li title="分享文章">
+            <a class="function-button">
+              <img src="../../assets/images/share.png" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+      -->
+  </div>
+
+
+  <div class="report" id="report" *ngIf="reportShow">
+      <div class="col-md-offset-4" style="margin-top:30%;">
+        <div class="panel panel-default panelShow">
+          <div class="panel-heading">
+            <h3 class="panel-title">举报文章</h3>
+          </div>
+          <div class="panel-body" >
+            <div class="row" style="width:102%;">
+              <p class="help-block text-warning text-center" style="margin-top:-30px; margin-bottom:5px;" *ngIf="reportInfoToggle">{{reportInfo}}</p>
+              <div class="col-md-4" >
+                <input type="radio" [(ngModel)]="radioValue"  value="1" name="reportRadio" >广告垃圾信息
+              </div>
+              <div class="col-md-5" >
+                <input type="radio" [(ngModel)]="radioValue"  value="2" name="reportRadio">抄袭或未授权转
+              </div>
+              <div class="col-md-3" >
+                <input type="radio" [(ngModel)]="radioValue" value="3"  name="reportRadio">其它
+              </div>
+              <br>
+              <textarea  name="textarear"cols="10" [(ngModel)]="reportValue" rows="3" class="form-control reportContent">
+
+              </textarea>
+              <div class="row" style="width:100%;">
+                <input type="button" class="pull-right sendBtn" value="发送" id="reportSubmit" (click)="funCoverShowSend()">
+                <span class="pull-right" style="margin-right:20px;margin-top:7px; font-size:16px; cursor: pointer" id="reportCancel" (click)="funCoverCancel()">取消</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+<div id="articalToTop" class="HomeToTop">
+  <img src="../../assets/images/arrow1.png" alt="">
+</div>
+

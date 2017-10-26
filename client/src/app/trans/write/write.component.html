@@ -1,0 +1,42 @@
+
+<div *ngIf="resultHidden" class="row" style="position:fixed;top:60px; width:50%;left:25%;text-align: center;z-index;">
+  <div class="alert alert-success">
+    {{callbackContent}}
+    <span class="pull-right" style="cursor:pointer;" (click)="funResultHidden()">&times;</span>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 120px; width:60%;">
+  <div class="row" >
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <div class="panel-title" style="height: 38px;">
+          <div class="col-md-7">
+            <input type="text" #titleRef name="title" class="form-control" [(ngModel)]="articalTitle" placeholder="请输入标题">
+          </div>
+          <div class="col-md-5">
+            <select #selRef  name="category" #categoryRef id="category" placeholder="请选择类别" class="form-control" style="z-index:1000;width:60%;">
+              <option *ngFor="let x of selectMenu" value="{{x.category_id}}">{{x.categoryname}}</option>
+            </select>
+            <span class="articalCategory">请填写类别</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="panel-body">
+          <div id="editorElem" style="text-align:left;margin-top:-10px;"></div>
+        </div>
+      </div>
+
+
+      <div class="row" style="padding:0 15px;">
+        <div style="background-color: #dddddd" class="btn btn-block" (click)="clickHandle(titleRef.value,categoryRef.value,selRef.value)">保存</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

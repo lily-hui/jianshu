@@ -1,0 +1,26 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-color: #eeeeee;
+}
+.form-div{
+  background-color: white;
+  top: 20vh;
+  border-radius: 5px;
+
+}
+.form-div h4{
+  padding: 10px;
+  color: #D45D79;
+}
+.btn-submint{
+  height: 45px;
+  width:100%;
+  background-color:#D45D79;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+}
+.form-warning{
+  color: #D45D79;
+}
